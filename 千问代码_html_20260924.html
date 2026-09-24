@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>健康证信息 - 李强</title>
+    <!-- 引入 QRCode 生成库 (CDN) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* 卡片主容器 */
+        .card {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 420px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            overflow: hidden;
+            margin-bottom: 25px;
+            border: 1px solid #eef2f7;
+        }
+
+        /* 顶部绿色装饰条 */
+        .card-header {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .card-header h2 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .card-header p {
+            margin: 5px 0 0;
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        /* 内容区域 */
+        .card-body {
+            padding: 30px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .label {
+            color: #7f8c8d;
+            font-size: 14px;
+            font-weight: 500;
+            width: 90px; 
+        }
+
+        .value {
+            color: #2c3e50;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: right;
+            flex: 1;
+            word-break: break-all;
+        }
+
+        /* 身份证号特殊样式 */
+        .id-number {
+            font-family: 'Courier New', Courier, monospace; 
+            letter-spacing: 1px;
+        }
+
+        /* 合格徽章 */
+        .status-badge {
+            display: inline-block;
+            background-color: #e8f8f5;
+            color: #27ae60;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            border: 1px solid #27ae60;
+        }
+
+        /* 底部备注 */
+        .card-footer {
+            background-color: #fafafa;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #95a5a6;
+            border-top: 1px solid #eee;
+        }
+
+        /* 二维码区域 */
+        .qr-section {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            width: 100%;
+            max-width: 420px;
+            box-sizing: border-box;
+        }
+
+        .qr-title {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        #qrcode {
+            display: inline-block;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            background: white;
+        }
+
+        .qr-tip {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 健康证信息卡片 -->
+    <div class="card">
+        <div class="card-header">
+            <h2>健康证信息</h2>
+            <p>北京市从业人员健康证明</p>
+        </div>
+        
+        <div class="card-body">
+            <div class="info-row">
+                <span class="label">姓名</span>
+                <span class="value">李强</span>
+            </div>
+            
+            <div class="info-row">
+                <span class="label">性别</span>
+                <span class="value">男</span>
+            </div>
+
+            <div class="info-row">
+                <span class="label">身份证信息</span>
+                <!-- 身份证已做脱敏处理 -->
+                <span class="value id-number">320721********5210</span>
+            </div>
+
+            <div class="info-row">
+                <span class="label">从业类型</span>
+                <span class="value">食品</span>
+            </div>
+
+            <div class="info-row">
+                <span class="label">体检日期</span>
+                <!-- ✅ 已修改为 8月16日 -->
+                <span class="value">2026-08-16</span>
+            </div>
+
+            <div class="info-row">
+                <span class="label">有效期至</span>
+                <span class="value">2027-08-18</span>
+            </div>
+
+            <div class="info-row" style="justify-content: center; margin-top: 10px;">
+                <span class="status-badge">检查结果：合格</span>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            编号：海 0757260288262<br>
+            <span style="font-size: 10px; margin-top: 5px; display: block;">本页面信息仅供参考，具体以实体证件为准</span>
+        </div>
+    </div>
+
+    <!-- 二维码区域 -->
+    <div class="qr-section">
+        <div class="qr-title">扫码验证 / 保存此页面</div>
+        <div id="qrcode"></div>
+        <div class="qr-tip">使用手机扫描二维码即可查看此健康证信息</div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            var currentUrl = window.location.href;
+            try {
+                new QRCode(document.getElementById("qrcode"), {
+                    text: currentUrl,
+                    width: 160,
+                    height: 160,
+                    colorDark : "#2c3e50",
+                    colorLight : "#ffffff",
+                    correctLevel : QRCode.CorrectLevel.H
+                });
+            } catch (e) {
+                console.error("二维码生成失败", e);
+                document.getElementById("qrcode").innerHTML = "<span style='color:red; font-size:12px;'>二维码加载失败</span>";
+            }
+        };
+    </script>
+
+</body>
+</html>
